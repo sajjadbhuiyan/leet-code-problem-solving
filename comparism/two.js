@@ -1,16 +1,26 @@
-var isPalindrome = function (x) {
-  var reverse = 0; //1 -> 10 -> 101
-  var copy = x; // 10 -> 1 ->
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var largestPerimeter = function (nums) {
+  // Sort in DESC order
+  nums.sort((a, b) => b - a);
+  console.log(nums);
 
-  while (copy > 0) {
-    const digit = copy % 10;
-    reverse = reverse * 10 + digit;
-    copy = ~~(copy / 10); //Math.floor(copy / 10)
+  for (let i = 0; i < nums.length; i++) {
+    // Decalre the three sides of the triangle
+    let a = nums[i],
+      b = nums[i + 1],
+      c = nums[i + 2];
+
+    console.log(`${a}, ${b}, ${c}`);
+
+    // Perform the check depending on the rule
+    if (a < b + c) return a + b + c;
   }
 
-  return reverse == x;
+  // If we cannot form a triangle, we return 0
+  return 0;
 };
 
-const number = 101;
-
-console.log(isPalindrome(number));
+console.log(largestPerimeter((nums = [10, 10, 2, 8, 20, 20, 4])));

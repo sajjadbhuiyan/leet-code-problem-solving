@@ -1,15 +1,21 @@
-var isPalindrome = function (x) {
-  if (x < 0 || (x % 10 == 0 && x != 0)) {
-    return false;
-  }
-  let t = 0;
-  while (x > t) {
-    t = t * 10 + (x % 10);
-    x = Math.floor(x / 10);
-  }
-  return t == x || x == Math.floor(t / 10);
+const getPerimeter = (nums) => {
+  if (
+    nums[0] + nums[1] <= nums[2] ||
+    nums[1] + nums[2] <= nums[0] ||
+    nums[0] + nums[2] <= nums[1]
+  )
+    return 0;
+
+  return nums[0] + nums[1] + nums[2];
 };
 
-const number = 0125210;
+var largestPerimeter = function (nums) {
+  nums = nums.sort((a, b) => a - b);
 
-console.log(isPalindrome(number));
+  for (let i = nums.length - 1; i >= 2; i--) {
+    const perimeter = getPerimeter([nums[i], nums[i - 1], nums[i - 2]]);
+    if (perimeter) return perimeter;
+  }
+
+  return 0;
+};
