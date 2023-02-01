@@ -1,35 +1,19 @@
-var nearestValidPoint = function (x, y, points) {
-  let manhattanIndices = new Map();
-  let currentMin = Infinity;
-
-  points.forEach((point, i) => {
-    if (point[0] === x || point[1] === y) {
-      console.log(point[0], point[1]);
-      manhattanIndices.set(i, Math.abs(x - point[0]) + Math.abs(y - point[1]));
-      currentMin = Math.min(
-        currentMin,
-        Math.abs(x - point[0]) + Math.abs(y - point[1])
-      );
+var isHappy = function (n) {
+  const checked = []; // [19 , 82, 68, 100]
+  while (n !== 1) {
+    if (checked.includes(n)) {
+      // console.log(checked.includes(n));
+      return false;
     }
-  });
-
-  for (let [index, distance] of manhattanIndices) {
-    if (distance === currentMin) {
-      return index;
-    }
+    checked.push(n);
+    n = n
+      .toString()
+      .split("")
+      .map((i) => i ** 2) // [64 , 4] -> [36,64] -> [1, 0, 0]
+      .reduce((sum, i) => sum + i, 0);
+    console.log(n);
   }
-
-  return -1;
+  return true;
 };
 
-const x = 3;
-const y = 4;
-const points = [
-  [1, 2],
-  [3, 1],
-  [2, 4],
-  [2, 3],
-  [4, 4],
-];
-
-console.log(nearestValidPoint(x, y, points));
+console.log(isHappy(19));
