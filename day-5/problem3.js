@@ -3,14 +3,21 @@
  * @return {boolean}
  */
 var checkStraightLine = function (coordinates) {
-  const distance = coordinates[1][0] - coordinates[0][0];
+  const distance = coordinates[0][1] - coordinates[0][0];
+  let count = 0;
+
   for (let i = 0; i < coordinates.length; i++) {
-    for (let j = 0; j < coordinates[i].length; j++) {
-      const element = coordinates[i][j];
-      console.log(element);
+    const measureDistance = coordinates[i][1] - coordinates[i][0];
+    if (measureDistance === distance) {
+      count++;
     }
-    // console.log(coordinates[i]);
   }
+
+  if (count === coordinates.length) {
+    return true;
+  }
+
+  return false;
 };
 
 const coordinates = [
@@ -22,4 +29,4 @@ const coordinates = [
   [6, 7],
 ];
 
-checkStraightLine(coordinates);
+console.log(checkStraightLine(coordinates));
