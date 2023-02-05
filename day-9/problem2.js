@@ -13,39 +13,32 @@ var freqAlphabets = function (s) {
       }
     }
   }
-  console.log(newArray);
-  const alphabet = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
-  for (let i = 1; i <= alphabet.length; i++) {
-    console.log(`${i} is ${alphabet[i]}`);
+
+  const numArray = [];
+  for (let j = 0; j < newArray.length; j++) {
+    if (newArray[j].length === 3) {
+      numArray.push(parseInt(newArray[j].slice(0, -1)));
+    } else {
+      numArray.push(parseInt(newArray[j]));
+    }
   }
+
+  const alphabet = ["0"];
+  for (let i = 97; i <= 122; i++) {
+    alphabet.push(String.fromCharCode(i));
+  }
+
+  const result = [];
+  for (let i = 0; i < numArray.length; i++) {
+    let ss = numArray[i];
+    let dd = alphabet.indexOf(alphabet[ss]);
+    if (ss === dd) {
+      result.push(alphabet[ss]);
+    }
+  }
+
+  return result.join("");
 };
 
-const s = "1326#";
-freqAlphabets(s);
+const s = "10#11#12";
+console.log(freqAlphabets(s));
